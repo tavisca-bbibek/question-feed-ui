@@ -1,66 +1,64 @@
 import React, {Component} from 'react';
 
-import CommentContainer from './CommentContainer';
+import AnswerContainer from './AnswerContainer';
 
 class Question extends Component{
+    
+    state = {
+        answerBoxCollapsed: true,
+        answer: ''
+    }
 
     constructor(props){
         super(props);
-        this.addComment = this.addComment.bind(this);
-        this.updateNewCommentValue = this.updateNewCommentValue.bind(this);
-        this.toggleCommentBoxCollapsed = this.toggleCommentBoxCollapsed.bind(this);
+        this.addAnswer = this.addAnswer.bind(this);
+        this.updateAnswer = this.updateAnswer.bind(this);
+        this.toggleAnswerBoxCollapsed = this.toggleAnswerBoxCollapsed.bind(this);
     }
 
-    state = {
-        commentBoxCollapsed: true,
-        newCommentValue: ''
+    addAnswer(){
+        let value = this.state.answer;
+        this.props.addAnswer(value);
+        this.setState({answer: ''});
     }
 
-    addComment(){
-        let questionId = this.props.question.id;
-        let value = this.state.newCommentValue;
-        this.props.addComment(questionId, value);
+    updateAnswer(value){
+        this.setState({answer: value});
     }
 
-    updateNewCommentValue(value){
-        this.setState({newCommentValue: value});
-    }
-
-    toggleCommentBoxCollapsed(){
-        this.setState({commentBoxCollapsed: !this.state.commentBoxCollapsed});
-    }
-
-    getComments(){
-        let comments = [];
-        this.props.question.comments.forEach(v => comments.push(v));
-        return comments;
+    toggleAnswerBoxCollapsed(){
+        this.setState({answerBoxCollapsed: !this.state.answerBoxCollapsed});
     }
 
     render(){
         return (
            <div className="container question-element">
-                <span>{this.props.question.id}. {this.props.question.value}</span><br/>
-                <span>U: {this.props.question.ups}</span>
-                <span> D: {this.props.question.downs}</span><br />
+                <span>{this.props.id}. {this.props.value}</span><br/>
+                <span>U: {this.props.ups}</span>
+                <span> D: {this.props.downs}</span><br />
                 <button style={{marginRight: '10px'}} onClick={this.props.incrementUps}>Up</button>
                 <button onClick={this.props.incrementDowns}>Down</button><br />
                 
-                {this.state.commentBoxCollapsed ?
-                    (<button onClick={this.toggleCommentBoxCollapsed}>Add Comment</button>)
+                {this.state.answerBoxCollapsed ?
+                    (<button onClick={this.toggleAnswerBoxCollapsed}>Answer</button>)
                     :(<div className="comment-box">
-                        <input type='text' placeholder="Your comment"  value={this.newCommentValue}
+                        <input type='text' placeholder="Your Answer"  value={this.answer}
                             style={{marginRight: '10px'}} 
-                            onChange={(event) => this.updateNewCommentValue(event.target.value)}/>
+                            onChange={(event) => this.updateAnswer(event.target.value)}/>
                     <button onClick={() => { 
-                        this.addComment(); this.toggleCommentBoxCollapsed();
+                        this.addAnswer(); this.toggleAnswerBoxCollapsed();
                     }}>Ok</button>
                     </div>)
                 }
 
-                <CommentContainer 
-                    comments={this.getComments() }
-                    incrementUps={(commentId) => this.props.incrementCommentUps(this.props.question.id, commentId)}
-                    incrementDowns={(commentId) => this.props.incrementCommentDowns(this.props.question.id, commentId)}
+                <AnswerContainer 
+                    answers={this.props.answers}
+                    addAnswer={this.props.addAnswer}
+                    incrementAnswerUps={this.props.incrementAnswerUps}
+                    incrementAnswerDowns={this.props.incrementAnswerDowns}
+                    addComment={this.props.addComment}
+                    incrementCommentUps={this.props.incrementCommentUps}
+                    incrementCommentDowns={this.props.incrementCommentDowns}
                  />
            </div>
         );

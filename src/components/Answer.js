@@ -1,28 +1,28 @@
 import React, {Component} from 'react';
 import CommentContainer from './CommentContainer';
-class Comment extends Component {
+class Answer extends Component {
 
     state = {
         commentBoxCollapsed: true,
-        newCommentValue: ''
+        comment: ''
     }
 
     constructor(props){
         super(props);
         this.addComment = this.addComment.bind(this);
-        this.updateNewCommentValue = this.updateNewCommentValue.bind(this);
+        this.updateComment = this.updateComment.bind(this);
         this.toggleCommentBoxCollapsed = this.toggleCommentBoxCollapsed.bind(this);
     }
 
 
     addComment(){
-        let value = this.state.newCommentValue;
+        let value = this.state.comment;
         this.props.addComment(value);
-        this.setState({newCommentValue: ''});
+        this.setState({comment: ''});
     }
 
-    updateNewCommentValue(value){
-        this.setState({newCommentValue: value});
+    updateComment(value){
+        this.setState({comment: value});
     }
 
     toggleCommentBoxCollapsed(){
@@ -41,9 +41,9 @@ class Comment extends Component {
                 {this.state.commentBoxCollapsed ?
                     (<button onClick={this.toggleCommentBoxCollapsed}>Comment</button>)
                     :(<div className="comment-box">
-                        <input type='text' placeholder="Your comment"  value={this.newCommentValue}
+                        <input type='text' placeholder="Your comment"  value={this.comment}
                             style={{marginRight: '10px'}} 
-                            onChange={(event) => this.updateNewCommentValue(event.target.value)}/>
+                            onChange={(event) => this.updateComment(event.target.value)}/>
                     <button onClick={() => { 
                         this.addComment(); this.toggleCommentBoxCollapsed();
                     }}>Ok</button>
@@ -54,10 +54,10 @@ class Comment extends Component {
                     addComment = {this.props.addComment}
                     incrementCommentUps={this.props.incrementCommentUps}
                     incrementCommentDowns={this.props.incrementCommentDowns}
-                />  
+                /> 
            </div>
         );
     }
 }
 
-export default Comment;
+export default Answer;

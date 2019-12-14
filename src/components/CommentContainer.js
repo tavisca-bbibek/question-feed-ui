@@ -1,9 +1,16 @@
 import React, {Component} from 'react';
 
 import Comment from './Comment';
+import { PARENT_COMMENT } from '../redux/feed/feedTypes';
 
 class CommentContainer extends Component {
-    
+
+    generateParent(id){
+        return {
+            type: PARENT_COMMENT,
+            id
+        }
+    }
     render(){
         return (
             <div className="comment-container">
@@ -12,10 +19,10 @@ class CommentContainer extends Component {
                     && this.props.comments 
                     && this.props.comments.map(comment => <Comment 
                         key={comment.id}
-                        comment={comment}
-                        addComment={_=> this.props.addComment(comment.id)}
-                        incrementUps={_=> this.props.incrementUps(comment.id)}
-                        incrementDowns={_=> this.props.incrementDowns(comment.id)}
+                        {...comment}
+                        addComment={(value, parent = this.generateParent(comment.id)) =>  this.props.addComment(value, parent)}
+                        incrementUps={_=> this.props.incrementCommentUps(comment.id)}
+                        incrementDowns={_=> this.props.incrementCommentDowns(comment.id)}
                         />)
                 }
             </div>
