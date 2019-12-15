@@ -4,7 +4,8 @@ class Comment extends Component {
 
     state = {
         commentBoxCollapsed: true,
-        newCommentValue: ''
+        newCommentValue: '',
+        contentsCollapsed: false
     }
 
     constructor(props){
@@ -12,6 +13,7 @@ class Comment extends Component {
         this.addComment = this.addComment.bind(this);
         this.updateNewCommentValue = this.updateNewCommentValue.bind(this);
         this.toggleCommentBoxCollapsed = this.toggleCommentBoxCollapsed.bind(this);
+        this.toggleContentsCollapsed = this.toggleContentsCollapsed.bind(this);
     }
 
 
@@ -29,36 +31,81 @@ class Comment extends Component {
         this.setState({commentBoxCollapsed: !this.state.commentBoxCollapsed});
     }
 
+    toggleContentsCollapsed(){
+        this.setState({contentsCollapsed: !this.state.contentsCollapsed});
+    }
+
+
     render(){
-        return (
-            <div className="comment flat-card">
-                <span>{this.props.value}</span><br/>
-                <div class="subtitle">
-                    <span>{this.props.ups}</span><span> ------ </span>
-                    <span>{this.props.downs}</span>
-                </div>
-                <hr />
-                <button style={{marginRight: '10px'}} onClick={this.props.incrementUps}>Up</button>
-                <button onClick={this.props.incrementDowns}>Down</button><br />
 
-                {this.state.commentBoxCollapsed ?
-                    (<button onClick={this.toggleCommentBoxCollapsed}>Comment</button>)
-                    :(<div className="comment-box">
-                        <input type='text' placeholder="Your comment"  value={this.newCommentValue}
-                            style={{marginRight: '10px'}} 
-                            onChange={(event) => this.updateNewCommentValue(event.target.value)}/>
-                    <button onClick={() => { 
-                        this.addComment(); this.toggleCommentBoxCollapsed();
-                    }}>Ok</button>
-                    </div>)
+        const controls = (
+          <div class="controls">
+            <i
+              class="fas fa-angle-double-up control-icon"
+              onClick={this.props.incrementUps}
+            />
+            <span>{this.props.ups}</span>
+            <i
+              class="fas fa-angle-double-down control-icon"
+              onClick={this.props.incrementDowns}
+            />
+            <span>{this.props.downs}</span>
+            <i
+              class="fas fa-comment-dots control-icon"
+              onClick={this.toggleCommentBoxCollapsed}
+            ></i>
+            {this.props.comments.length > 0 &&
+              (this.state.contentsCollapsed ? (
+                <i
+                  class="fas fa-angle-up control-icon"
+                  onClick={this.toggleContentsCollapsed}
+                ></i>
+              ) : (
+                <i
+                  class="fas fa-angle-down control-icon"
+                  onClick={this.toggleContentsCollapsed}
+                ></i>
+              ))}
+          </div>
+        );
 
+        const commentBox = (
+          <div className="response-box">
+            <input
+              type="text"
+              placeholder="Your Comment"
+              value={this.answer}
+              style={{ marginRight: "10px" }}
+              onChange={event => this.updateComment(event.target.value)}
+              onKeyPress={event => {
+                if(event.keyCode == 13 || event.which == 13){
+                    this.addComment();
+                    this.toggleCommentBoxCollapsed();
                 }
-                <CommentContainer comments={this.props.comments}
-                    addComment = {this.props.addComment}
-                    incrementCommentUps={this.props.incrementCommentUps}
-                    incrementCommentDowns={this.props.incrementCommentDowns}
-                />  
-           </div>
+            }}
+            />
+            <button
+              onClick={() => {
+                this.addComment();
+                this.toggleCommentBoxCollapsed();
+              }}
+            >Comment</button>
+          </div>
+        );
+
+        return (
+          <div className="flat-card">
+            <p className="comment">{this.props.value}</p>
+            {this.state.commentBoxCollapsed ? controls : commentBox}
+            {!this.state.contentsCollapsed && (
+              <CommentContainer
+                comments={this.props.comments}
+                addComment={this.props.addComment}
+                incrementCommentUps={this.props.incrementCommentUps}
+                incrementCommentDowns={this.props.incrementCommentDowns}
+              />
+            )}
+          </div>
         );
     }
 }

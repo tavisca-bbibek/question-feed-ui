@@ -18,11 +18,11 @@ class QuestionContainer extends Component {
     
     render(){
         return (
-            <div className="question-container">
-                {
-                    this.props 
-                    && this.props.questions 
-                    && this.props.questions.map(
+            this.props 
+            && this.props.questions 
+            && this.props.questions.length > 0 
+            && <div className="container questions">
+                {this.props.questions.map(
                         question => <Question key={question.id} 
                         {...question}
                         incrementUps={ _=>  this.props.incrementQuestionUps(question.id)}

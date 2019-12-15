@@ -10,10 +10,12 @@ import QuestionAdder from './components/QuestionAdder';
 
 function App() {
   return (
-    <div className="container App">
-      <Provider store = {store}>
-        <QuestionContainer />
+    <div className="App">
+      <Provider store={store}>
         <QuestionAdder />
+        <div className="body-container">
+          <QuestionContainer />
+        </div>
       </Provider>
     </div>
   );

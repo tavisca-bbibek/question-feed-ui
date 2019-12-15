@@ -1,6 +1,12 @@
-body{
-  font-size: 1.6em;
-  color: lightblue;
+p{
+  margin-top: 0px;
+  margin-bottom: 8px;
+  padding: 0px;
+}
+
+.body-container{
+  display: flex;
+  flex-direction: row;
 }
 
 
@@ -11,6 +17,11 @@ body{
   padding: 16px;
 }
 
+.questions{
+  width: 500px;
+  margin: auto;
+}
+
 .card {
   border-left: 2px solid whitesmoke;
   box-shadow: 0px 1px 8px rgba(0, 0, 0, .1);
@@ -18,32 +29,42 @@ body{
   padding: 16px;
 }
 
+.card:hover{
+  box-shadow: 0px 1px 16px rgba(0, 0, 0, .1);
+}
+
 .flat-card {
-  border-left: 2px solid lightblue;
+  border-left: 2px solid whitesmoke;
   margin:16px;
   padding: 16px;
 }
 
 button {
   border: 2px solid whitesmoke;
-  border-radius: 2px 2px 2px 2px;
-  border-radius: 2px 2px 2px 2px;
+  border-radius: 10px 10px 10px 10px;
   background-color: white;
-  color: lightblue;
+  color: grey;
   padding: 8px;
   box-sizing: border-box;
+  font-family: 'Open Sans';
 }
 
 button:hover{
-  background-color: lightblue;
-  color: white;
-  border: 2px solid lightblue;
+  color: orange;
+  border: 2px solid orange;
 }
 
 input {
+  font-family: 'Open Sans';
   border: 2px solid whitesmoke;
-  border-radius: 2px 2px 2px 2px;
+  border-radius: 10px 10px 10px 10px;
+  outline: none;
   padding: 8px;
+}
+
+input:hover{
+  color: orange;
+  border: 2px solid orange;
 }
 
 hr {
@@ -57,7 +78,6 @@ hr {
 
 
 .question-adder{
-  cursor: pointer;
   text-align: center;
 }
 
@@ -66,10 +86,46 @@ hr {
   justify-content: center;
 }
 
-.subtitle {
-  color: grey;
-  font-size: .7em;
+.control-icon {
+  margin-left: 16px;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.control-icon:hover{
+  color: orange;
+}
+
+.controls {
+  color: lightslategray;
+  font-size: 1em;
   border-left: 2px solid whitesmoke;
-  margin-top: 8px;
-  padding-left: 16px;
+}
+
+
+.add-button{
+  cursor: pointer;
+  color: darkorange;
+  padding: 4px;
+}
+
+.add-button:hover{
+  color: orangered;
+}
+
+.question{
+  font-family: 'Open Sans';
+  font-size: 1.5em;
+}
+
+.answer{
+  font-family: 'Open Sans';
+  color: grey;
+  font-size: 1.25em;
+}
+
+.comment{
+  font-family: 'Open Sans';
+  color: darkgrey;
+  font-size: 1em;
 }
