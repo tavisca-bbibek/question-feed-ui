@@ -23,6 +23,8 @@ class CommentContainer extends Component {
                         addComment={(value, parent = this.generateParent(comment.id)) =>  this.props.addComment(value, parent)}
                         incrementUps={_=> this.props.incrementCommentUps(comment.id)}
                         incrementDowns={_=> this.props.incrementCommentDowns(comment.id)}
+                        incrementCommentUps={this.props.incrementCommentUps}
+                        incrementCommentDowns={this.props.incrementCommentDowns}
                         />)
                 }
             </div>

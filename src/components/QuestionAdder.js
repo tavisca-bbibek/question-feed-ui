@@ -23,6 +23,7 @@ class QuestionAdder extends Component {
     addQuestion(){
         let value = this.state.newQuestionValue;
         this.props.addQuestion(value);
+        this.setState({newQuestionValue: ''});
     }
 
     updateNewQuestionValue(value){
@@ -31,7 +32,7 @@ class QuestionAdder extends Component {
 
     render(){
         return (
-            <div className="question-adder-element">
+            <div className="question-adder">
                { this.state.adderCollapsed ?
                 (<span onClick={this.toggleAdderCollapsed}>+</span>)
                 :(<div className='question-box'>

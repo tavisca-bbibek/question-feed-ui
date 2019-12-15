@@ -1,12 +1,25 @@
 body{
   font-size: 1.6em;
-  color: orange;
+  color: lightblue;
 }
 
 
 .container{
-  border: 2px solid whitesmoke;
+  border: 1px solid whitesmoke;
   border-radius: 2px 2px 2px 2px;
+  margin:16px;
+  padding: 16px;
+}
+
+.card {
+  border-left: 2px solid whitesmoke;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, .1);
+  margin:16px;
+  padding: 16px;
+}
+
+.flat-card {
+  border-left: 2px solid lightblue;
   margin:16px;
   padding: 16px;
 }
@@ -16,15 +29,15 @@ button {
   border-radius: 2px 2px 2px 2px;
   border-radius: 2px 2px 2px 2px;
   background-color: white;
-  color: orange;
+  color: lightblue;
   padding: 8px;
   box-sizing: border-box;
 }
 
 button:hover{
-  background-color: orange;
+  background-color: lightblue;
   color: white;
-  border: 2px solid orange;
+  border: 2px solid lightblue;
 }
 
 input {
@@ -33,18 +46,17 @@ input {
   padding: 8px;
 }
 
+hr {
+  border: 1px solid whitesmoke;
+}
+
 .App {
   display: flex;
   flex-direction: column;
-  margin-bottom: 0px;
 }
 
-.question-container{
-  display: flex;
-  flex-direction: column;
-}
 
-.question-adder-element{
+.question-adder{
   cursor: pointer;
   text-align: center;
 }
@@ -52,4 +64,12 @@ input {
 .question-box {
   display: flex;
   justify-content: center;
+}
+
+.subtitle {
+  color: grey;
+  font-size: .7em;
+  border-left: 2px solid whitesmoke;
+  margin-top: 8px;
+  padding-left: 16px;
 }

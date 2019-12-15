@@ -34,7 +34,6 @@ const commentReducer = (state = initialState, action) => {
             if(parentId === undefined){
                  action.payload.commentId = commentId;
             }else{
-                    console.log(parentId, state.comments);
                     state.comments.get(parentId).commentIds.push(commentId);
                 }
 
@@ -42,13 +41,13 @@ const commentReducer = (state = initialState, action) => {
     
         case INCREMENT_COMMENT_UPS:
             commentId = action.payload;
-            state.answers.get(commentId).ups++;
+            state.comments.get(commentId).ups++;
 
             return {...state};
             
         case INCREMENT_COMMENT_DOWNS:
             commentId = action.payload;
-            state.answers.get(commentId).downs++;
+            state.comments.get(commentId).downs++;
             
             return {...state};
 

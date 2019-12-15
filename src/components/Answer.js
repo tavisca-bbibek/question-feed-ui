@@ -31,10 +31,13 @@ class Answer extends Component {
 
     render(){
         return (
-            <div className="container comment-element">
+            <div className="answer flat-card">
                 <span>{this.props.value}</span><br/>
-                <span>U: {this.props.ups}</span>
-                <span> D: {this.props.downs}</span><br/>
+                <div className="subtitle">
+                    <span>{this.props.ups}</span><span> ------ </span>
+                    <span>{this.props.downs}</span>
+                </div>
+                <hr />
                 <button style={{marginRight: '10px'}} onClick={this.props.incrementUps}>Up</button>
                 <button onClick={this.props.incrementDowns}>Down</button><br />
 

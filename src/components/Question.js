@@ -32,10 +32,13 @@ class Question extends Component{
 
     render(){
         return (
-           <div className="container question-element">
-                <span>{this.props.id}. {this.props.value}</span><br/>
-                <span>U: {this.props.ups}</span>
-                <span> D: {this.props.downs}</span><br />
+           <div className="question card">
+                <span>{this.props.value}</span><br/>
+                <div class="subtitle">
+                    <span>{this.props.ups}</span><span> ------ </span>
+                    <span>{this.props.downs}</span>
+                </div>
+                <hr />
                 <button style={{marginRight: '10px'}} onClick={this.props.incrementUps}>Up</button>
                 <button onClick={this.props.incrementDowns}>Down</button><br />
                 

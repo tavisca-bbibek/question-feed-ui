@@ -14,7 +14,7 @@ class AnswerContainer extends Component {
     
     render(){
         return (
-            <div className="comment-container">
+            <div className="answer-container">
                 {
                     this.props 
                     && this.props.answers 
@@ -24,6 +24,8 @@ class AnswerContainer extends Component {
                         addComment={(value, parent = this.generateParent(answer.id)) => this.props.addComment(value, parent)}
                         incrementUps={_=> this.props.incrementAnswerUps(answer.id)}
                         incrementDowns={_=> this.props.incrementAnswerDowns(answer.id)}
+                        incrementCommentUps={this.props.incrementCommentUps}
+                        incrementCommentDowns={this.props.incrementCommentDowns}
                         />)
                 }
             </div>

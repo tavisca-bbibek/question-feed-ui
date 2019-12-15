@@ -11,16 +11,16 @@ export const addComment = (value, parent) => {
     }
 }
 
-export const incrementCommentUps = (questionId, commentId) => {
+export const incrementCommentUps = (commentId) => {
     return {
         type: INCREMENT_COMMENT_UPS,
-        payload: {questionId, commentId}
+        payload: commentId
     }
 }
 
-export const incrementCommentDowns = (questionId, commentId) => {
+export const incrementCommentDowns = (commentId) => {
     return {
         type: INCREMENT_COMMENT_DOWNS,
-        payload: {questionId, commentId}
+        payload: commentId
     }
 }
