@@ -4,27 +4,27 @@ class Comment extends Component {
 
     state = {
         commentBoxCollapsed: true,
-        newCommentValue: '',
+        comment: '',
         contentsCollapsed: false
     }
 
     constructor(props){
         super(props);
         this.addComment = this.addComment.bind(this);
-        this.updateNewCommentValue = this.updateNewCommentValue.bind(this);
+        this.updateComment = this.updateComment.bind(this);
         this.toggleCommentBoxCollapsed = this.toggleCommentBoxCollapsed.bind(this);
         this.toggleContentsCollapsed = this.toggleContentsCollapsed.bind(this);
     }
 
 
     addComment(){
-        let value = this.state.newCommentValue;
+        let value = this.state.comment;
         this.props.addComment(value);
-        this.setState({newCommentValue: ''});
+        this.setState({comment: ''});
     }
 
-    updateNewCommentValue(value){
-        this.setState({newCommentValue: value});
+    updateComment(value){
+        this.setState({comment: value});
     }
 
     toggleCommentBoxCollapsed(){
